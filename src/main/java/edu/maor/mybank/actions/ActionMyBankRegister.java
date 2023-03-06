@@ -33,6 +33,8 @@ public class ActionMyBankRegister extends HttpServlet {
         account.setClient(client);
         account.setBalance(balance);
 
+        MyBank myBank = new MyBank();
+
         MyBank.getClientDao().save(client);
         MyBank.getAccountDao().save(account);
     }

@@ -10,12 +10,12 @@ import java.util.List;
 
 public class MyBankDao<T, K extends Serializable>  implements DAO<T,K> {
 
-    static Session session = MyBank.getSessionFactory().getCurrentSession();
+    static Session session = MyBank.getSession();
 
     static {
         if (session == null ) {
             MyBank.initialize();
-            session = MyBank.getSessionFactory().getCurrentSession();
+            session = MyBank.getSession();
         }
     }
     private final Class<T> entityClass;

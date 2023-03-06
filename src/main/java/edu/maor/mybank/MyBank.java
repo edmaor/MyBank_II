@@ -3,19 +3,17 @@ package edu.maor.mybank;
 
 import edu.maor.mybank.dao.AccountDao;
 import edu.maor.mybank.dao.ClientDao;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import java.io.File;
+import org.hibernate.Session;
 
 public class MyBank {
-    private static final SessionFactory sessionFactory;
+    private static final Session session;
     private static final AccountDao accountDao;
     private static final ClientDao clientDao;
 
     static {
         try {
-            sessionFactory = new Configuration().configure(new File("hibernate.cfg.xml")).buildSessionFactory();
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
             accountDao = new AccountDao();
             clientDao = new ClientDao();
         } catch (Throwable ex) {
@@ -26,8 +24,8 @@ public class MyBank {
 
     public static void initialize() {}
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public static Session getSession() {
+        return session;
     }
     public static ClientDao getClientDao() {
         return clientDao;
