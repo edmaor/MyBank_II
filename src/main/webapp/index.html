@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MyBank - Home</title>
+    <link rel="stylesheet" href="global.css">
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</head>
+<body>
+<div class="content">
+    <h1>Welcome to MyBank</h1>
+    <div style="display: inline">
+        <button onclick="location.href='account-login.html'">Log In</button>
+        <button onclick="location.href='form-register.jsp'">Register</button>
+    </div>
+</div>
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'experience')">Experience and Expertise</button>
+    <button class="tablinks" onclick="openTab(event, 'safety')">Safety and Security</button>
+    <button class="tablinks" onclick="openTab(event, 'customer')">Customer Service</button>
+    <button class="tablinks" onclick="openTab(event, 'transparency')">Transparency</button>
+    <button class="tablinks" onclick="openTab(event, 'innovative')">Innovative Products and Services</button>
+    <div id="experience" class="tabcontent">
+        <h2>Experience and Expertise</h2>
+        <p>Our bank has years of experience in the financial industry and has a team of highly qualified experts who are dedicated to helping you make the best financial decisions for your needs.</p>
+    </div>
+    <div id="safety" class="tabcontent">
+        <h2>Safety and Security</h2>
+        <p>We take the security of your finances very seriously and have implemented robust measures to ensure that your funds and personal information are always safe..</p>
+    </div>
+    <div id="customer" class="tabcontent">
+        <h2>Customer Service</h2>
+        <p>We are committed to providing excellent customer service and ensuring that all of our customers are satisfied with our products and services. Our friendly and knowledgeable staff are always on hand to assist you with any questions or concerns you may have.</p>
+    </div>
+    <div id="transparency" class="tabcontent">
+        <h2>Transparency</h2>
+        <p>Our bank is committed to being transparent in all of our business practices, including fees and charges. We believe that transparency is the key to building trust with our customers.</p>
+    </div>
+    <div id="innovative" class="tabcontent">
+        <h2>Innovative Products and Services</h2>
+        <p>We are constantly innovating and developing new products and services to meet the evolving needs of our customers. From online banking to mobile apps, we are always looking for ways to make banking more convenient and accessible for our customers.</p>
+    </div>
+</div>
+</body>
+</html>
