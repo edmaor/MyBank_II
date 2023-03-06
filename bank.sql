@@ -3,15 +3,15 @@ CREATE DATABASE BANK_DB;
 USE BANK_DB;
 CREATE TABLE Client(
     nid INT(11) PRIMARY KEY,
-    name VARCHAR(255),
-    email VARCHAR(127) UNIQUE,
-    country VARCHAR(64)
+    name VARCHAR(255)  NOT NULL ,
+    email VARCHAR(127) NOT NULL UNIQUE,
+    country VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE Account(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nid INT(11),
-    balance DOUBLE,
+    aid INT PRIMARY KEY AUTO_INCREMENT,
+    nid INT(11) NOT NULL,
+    balance DOUBLE NOT NULL,
     FOREIGN KEY (nid) REFERENCES Client(nid)
 );
 

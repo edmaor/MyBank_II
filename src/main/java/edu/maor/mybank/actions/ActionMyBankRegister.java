@@ -1,13 +1,15 @@
-package edu.maor.bank.actions;
+package edu.maor.mybank.actions;
 
-import java.io.*;
-
-import edu.maor.bank.BankApp;
-import edu.maor.bank.domain.Account;
-import edu.maor.bank.domain.Client;
+import edu.maor.mybank.MyBank;
+import edu.maor.mybank.domain.Account;
+import edu.maor.mybank.domain.Client;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 @WebServlet(name = "ActionMyBankRegister", value = "/ActionMyBankRegister")
 public class ActionMyBankRegister extends HttpServlet {
@@ -15,16 +17,23 @@ public class ActionMyBankRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
-        int id = Integer.parseInt(req.getParameter("dni_nie"));
+        int nid = Integer.parseInt(req.getParameter("dni_nie"));
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String country = req.getParameter("country");
-        double mount = Double.parseDouble(req.getParameter("mount"));
+        double balance = Double.parseDouble(req.getParameter("mount"));
 
-        Client client = new Client(id, name, email, country);
-        Account account = new Account(id, mount);
+        Client client = new Client();
+        client.setNid(nid);
+        client.setName(name);
+        client.setEmail(email);
+        client.setCountry(country);
 
-        BankApp.clientDao.post(client);
-        BankApp.accountDAO.post(account);
+        Account account = new Account();
+        account.setClient(client);
+        account.setBalance(balance);
+
+        MyBank.getClientDao().save(client);
+        MyBank.getAccountDao().save(account);
     }
 }

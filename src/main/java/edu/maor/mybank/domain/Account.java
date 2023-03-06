@@ -1,18 +1,16 @@
-package edu.maor.bank_ii.domain;
+package edu.maor.mybank.domain;
 
-import org.hibernate.annotations.*;
-
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@ @Data @NoArgsConstructor
+@Entity
+@Data @NoArgsConstructor
 public class Account {
-    int id;
-    int nid;
-    double balance;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int aid;
 
-    public Account(int nid, double balance) {
-        this.nid = nid;
-        this.balance = balance;
-    }
+    @ManyToOne @JoinColumn(name = "client_nid")
+    Client client;
+    double balance;
 }

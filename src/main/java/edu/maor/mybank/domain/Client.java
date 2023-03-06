@@ -1,18 +1,21 @@
-package edu.maor.bank_ii.domain;
+package edu.maor.mybank.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+@Entity
 @Data @NoArgsConstructor
 public class Client {
+    @Id
     int nid;
     String name;
     String email;
     String country;
-    public Client(int nid, String name, String email, String country) {
-        this.nid = nid;
-        this.name = name;
-        this.email = email;
-        this.country = country;
-    }
+    @OneToMany(mappedBy = "client")
+    List<Account> accounts;
 }
